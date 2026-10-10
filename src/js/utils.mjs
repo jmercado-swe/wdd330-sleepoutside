@@ -70,3 +70,34 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 }
+
+// shows a message box at the top of <main> that the user can close with the X
+export function alertMessage(message, scroll = true) {
+  const main = document.querySelector('main');
+
+  // create element to hold the alert
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+
+  // remove the alert only if the user clicked the X
+  alert.addEventListener('click', function (e) {
+    if (e.target.tagName === 'SPAN') {
+      main.removeChild(this);
+    }
+  });
+
+  // add the alert to the top of main
+  main.prepend(alert);
+
+  // scroll up so the user sees the alert (can be turned off with scroll = false)
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}
+
+// removes any alerts already on the page so old messages don't pile up
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll('.alert');
+  alerts.forEach((alert) => alert.remove());
+}

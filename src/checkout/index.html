@@ -20,34 +20,39 @@
         <fieldset>
           <legend>Shipping</legend>
           <label for="fname">First Name</label>
-          <input type="text" id="fname" name="fname" required />
+          <input type="text" id="fname" name="fname" autocomplete="given-name" required />
 
           <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="lname" required />
+          <input type="text" id="lname" name="lname" autocomplete="family-name" required />
 
           <label for="street">Street Address</label>
-          <input type="text" id="street" name="street" required />
+          <input type="text" id="street" name="street" autocomplete="street-address" required />
 
           <label for="city">City</label>
-          <input type="text" id="city" name="city" required />
+          <input type="text" id="city" name="city" autocomplete="address-level2" required />
 
           <label for="state">State</label>
-          <input type="text" id="state" name="state" required />
+          <input type="text" id="state" name="state" maxlength="2" pattern="[A-Za-z]{2}"
+            title="Use the 2-letter state code, like ID" placeholder="ID" required />
 
           <label for="zip">Zip Code</label>
-          <input type="text" id="zip" name="zip" required />
+          <input type="text" id="zip" name="zip" inputmode="numeric" maxlength="5" pattern="[0-9]{5}"
+            title="Zip code must be 5 numbers" required />
         </fieldset>
 
         <fieldset>
           <legend>Payment</legend>
           <label for="cardNumber">Credit Card Number</label>
-          <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" required />
+          <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" maxlength="16" pattern="[0-9]{16}"
+            title="Card number must be 16 numbers with no spaces" required />
 
           <label for="expiration">Expiration Date</label>
-          <input type="text" id="expiration" name="expiration" placeholder="MM/YY" required />
+          <input type="text" id="expiration" name="expiration" placeholder="MM/YY" maxlength="5"
+            pattern="(0[1-9]|1[0-2])/[0-9]{2}" title="Use MM/YY, like 08/27" required />
 
           <label for="code">Security Code</label>
-          <input type="text" id="code" name="code" inputmode="numeric" required />
+          <input type="text" id="code" name="code" inputmode="numeric" maxlength="3" pattern="[0-9]{3}"
+            title="Security code must be 3 numbers" required />
         </fieldset>
 
         <fieldset class="checkout-summary">

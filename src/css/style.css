@@ -339,3 +339,25 @@ footer {
 .checkout-summary p {
   padding: 0.25rem 0;
 }
+
+/* Alert messages */
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  border: 1px solid var(--tertiary-color);
+}
+
+.alert span {
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Success page */
+.success {
+  text-align: center;
+  padding: 2rem 1rem;
+}
