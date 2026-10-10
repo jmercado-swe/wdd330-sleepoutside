@@ -1,4 +1,4 @@
-import { qs, getLocalStorage, setLocalStorage } from './utils.mjs';
+import { qs, getLocalStorage, setLocalStorage, alertMessage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   return `
@@ -39,6 +39,9 @@ export default class ProductDetails {
     const cartItems = getLocalStorage('so-cart') || [];
     cartItems.push(this.product);
     setLocalStorage('so-cart', cartItems);
+
+    // let the user know it worked
+    alertMessage(`${this.product.NameWithoutBrand} was added to your cart!`);
   }
 
   renderProductDetails() {

@@ -1,4 +1,4 @@
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage, alertMessage, removeAllAlerts } from './utils.mjs';
 import ExternalServices from './ExternalServices.mjs';
 
 const services = new ExternalServices();
@@ -87,9 +87,24 @@ export default class CheckoutProcess {
         order.items = packageItems(this.list);
 
         try {
+            // the code that can break goes in the try
             const response = await services.checkout(order);
             console.log(response);
+
+            // happy path: empty the cart and go to the success page
+            localStorage.removeItem(this.key);
+            window.location.href = '/checkout/success.html';
         } catch (err) {
+            // unhappy path: show what went wrong and stay on the form
+            removeAllAlerts();
+
+            if (err.name === 'servicesError') {
+                // the server sends an object like { cardNumber: "Invalid Card Number" }
+                Object.values(err.message).forEach((msg) => alertMessage(msg));
+            } else {
+                alertMessage('Something went wrong. Please try again.');
+            }
+
             console.log(err);
         }
     }
